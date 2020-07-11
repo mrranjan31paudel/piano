@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 import KeyBoard from './components/KeyBoard';
 
-import 'http://localhost:3000/right-poke.svg';
 import './style/layout.css';
 import './style/common.css';
 import './style/style.css';
