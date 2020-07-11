@@ -6,7 +6,7 @@
   position: relative;
   width: 656px;
   margin: 0px auto;
-  cursor: url(http://localhost:3000/right-poke-s.png), auto;
+  cursor: url(http://localhost:3000/right-poke-s.png), url(https://mrranjan31paudel.github.io/piano/right-poke-s.png), auto;
 }
 
 .key-full {
