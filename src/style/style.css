@@ -1,0 +1,73 @@
+.main-container {
+  width: 100%;
+}
+
+.full-keys-container {
+  position: relative;
+  width: 656px;
+  margin: 0px auto;
+  cursor: url(http://localhost:3000/right-poke-s.png), auto;
+}
+
+.key-full {
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  width: 80px;
+  height: 320px;
+  margin: 0px 1px;
+  background-color: whitesmoke;
+  box-shadow: 0px 4px 5px 2px #0000002a;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  text-align: center;
+}
+
+.key-full.pressed {
+  background-color: rgb(228, 228, 228);
+}
+
+.key-half {
+  position: absolute;
+  z-index: 20;
+  top: 0px;
+  width: 48px;
+  height: 160px;
+  background-color: black;
+  box-shadow: 0px 4px 5px 2px #0000002a;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.key-half.pressed {
+  box-shadow: 0px 0px 5px 2px #0000002a;
+}
+
+.pos-58 {
+  left: 58px;
+}
+
+.pos-140 {
+  left: 140px;
+}
+
+.pos-304 {
+  left: 304px;
+}
+
+.pos-386 {
+  left: 386px;
+}
+
+.pos-468 {
+  left: 468px;
+}
+
+.key-text {
+  position: absolute;
+  width: calc(100% - 10px);
+  bottom: 0px;
+  left: 0px;
+  padding: 5px;
+  font-weight: 600;
+}

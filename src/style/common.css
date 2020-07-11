@@ -1,0 +1,27 @@
+.color-red {
+  color: rgb(165, 0, 0);
+}
+
+.color-orange {
+  color: rgb(184, 119, 0);
+}
+
+.color-yellow {
+  color: rgb(148, 148, 0);
+}
+
+.color-green {
+  color: rgb(0, 175, 0);
+}
+
+.color-cyan {
+  color: rgb(0, 177, 177);
+}
+
+.color-blue {
+  color: blue;
+}
+
+.color-magenta {
+  color: magenta;
+}
