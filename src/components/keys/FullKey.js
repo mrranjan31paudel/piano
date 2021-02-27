@@ -1,38 +1,31 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class FullKey extends Component {
-  constructor() {
-    super();
+import KeyBase from './KeyBase';
 
-    this.state = {
-      isPressed: false
-    };
-  }
+const horseSrc = 'http://localhost:3000/piano/sounds/horse.mp3';
 
-  setIsPressed = (pressedState) => {
-    this.setState({
-      isPressed: pressedState
-    });
-  }
-
-  handleKeyPress = () => {
-    this.setIsPressed(true);
-  }
-
-  handleKeyRelease = () => {
-    this.setIsPressed(false);
+class FullKey extends KeyBase {
+  constructor(props) {
+    super(horseSrc, props);
   }
 
   render() {
-    const { isPressed } = this.state;
-    const { id, label, color } = this.props;
+    const {
+      id,
+      label,
+      color,
+      pressedKeys,
+      repKey,
+      handleKeyDown,
+      handleKeyUp
+    } = this.props;
 
     return (
       <div
-        className={`key-full${isPressed ? ' pressed' : ''}`}
+        className={`key-full${pressedKeys[repKey] ? ' pressed' : ''}`}
         id={id}
-        onMouseDown={this.handleKeyPress}
-        onMouseUp={this.handleKeyRelease}
+        onMouseDown={() => handleKeyDown({ key: repKey })}
+        onMouseUp={() => handleKeyUp({ key: repKey })}
       >
         <div className={`key-text color-${color}`}>
           {label}

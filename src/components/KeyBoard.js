@@ -3,91 +3,75 @@ import React, { Component } from 'react';
 import FullKey from './keys/FullKey';
 import HalfKey from './keys/HalfKey';
 
-const fullKeysList = [
-  {
-    id: 'c3',
-    label: 'C3',
-    color: 'red'
-  },
-  {
-    id: 'd3',
-    label: 'D3',
-    color: 'orange'
-  },
-  {
-    id: 'e3',
-    label: 'E3',
-    color: 'yellow'
-  },
-  {
-    id: 'f3',
-    label: 'F3',
-    color: 'green'
-  },
-  {
-    id: 'g3',
-    label: 'G3',
-    color: 'cyan'
-  },
-  {
-    id: 'a3',
-    label: 'A3',
-    color: 'blue'
-  },
-  {
-    id: 'b3',
-    label: 'B3',
-    color: 'magenta'
-  },
-  {
-    id: 'c4',
-    label: 'C4',
-    color: 'red'
-  }
-];
-
-const halfKeyList = [
-  {
-    id: 'c3s',
-    leftPos: '58'
-  },
-  {
-    id: 'd3s',
-    leftPos: '140'
-  },
-  {
-    id: 'f3s',
-    leftPos: '304'
-  },
-  {
-    id: 'g3s',
-    leftPos: '386'
-  },
-  {
-    id: 'a3s',
-    leftPos: '468'
-  }
-]
+import ALLOWED_KEYS from '../constants/allowedKeys';
+import { FULL_KEYS, HALF_KEYS } from '../constants/keyLists';
 
 class KeyBoard extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      pressedKeys: {}
+    };
+  }
+
+  componentDidMount() {
+    document.getElementById('keyboard-wrapper').focus();
+  }
+
+  handleKeyDown = ({ key }) => {
+    if (!ALLOWED_KEYS[key]) return;
+
+    this.setState(state => ({
+      pressedKeys: {
+        ...state.pressedKeys,
+        [key]: true
+      }
+    }));
+  }
+
+  handleKeyUp = ({ key }) => {
+    if (!ALLOWED_KEYS[key]) return;
+
+    let pressedKeys = { ...this.state.pressedKeys };
+    delete pressedKeys[key];
+
+    this.setState({
+      pressedKeys: { ...pressedKeys }
+    });
+  }
 
   render() {
-    return (
-      <>
-        <div className="full-keys-container">
-          {
-            fullKeysList.map(key => (
-              <FullKey {...key} />
-            ))
-          }
-          {
-            halfKeyList.map(key => (
-              <HalfKey {...key} />
-            ))
-          }
-        </div>
+    const { pressedKeys } = this.state;
 
-      </>
+    return (
+      <div
+        id="keyboard-wrapper"
+        onKeyDown={this.handleKeyDown}
+        onKeyUp={this.handleKeyUp}
+        tabIndex="0"
+      >
+        <div className="all-keys-container">
+          {FULL_KEYS.map(keyItem => (
+            <FullKey
+              key={keyItem.id}
+              {...keyItem}
+              pressedKeys={pressedKeys}
+              handleKeyDown={this.handleKeyDown}
+              handleKeyUp={this.handleKeyUp}
+            />
+          ))}
+          {HALF_KEYS.map(keyItem => (
+            <HalfKey
+              key={keyItem.id}
+              {...keyItem}
+              pressedKeys={pressedKeys}
+              handleKeyDown={this.handleKeyDown}
+              handleKeyUp={this.handleKeyUp}
+            />
+          ))}
+        </div>
+      </div>
     );
   }
 }
