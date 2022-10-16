@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 import KeyBoard from './components/KeyBoard';
 
@@ -10,7 +11,14 @@ class App extends Component {
   render() {
     return (
       <div className="main-container">
-        <KeyBoard />
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/piano">
+              <Redirect to="/" />
+            </Route>
+            <Route exact path="/" component={KeyBoard} />
+          </Switch>
+        </BrowserRouter>
       </div>
     );
   }
